@@ -16,22 +16,9 @@ function extend(obj, src) {
     return obj;
 }
 
-function inlineCssWithCb(html, css, options) {
-    return new Promise(function(resolve, reject) {
-        var content;
-
-        try {
-            content = inlineCss(html, css, options);
-            resolve(content);
-        } catch (err) {
-            reject(err);
-        }
-    });
-
-}
-
 function inlineContent(src, options) {
     return new Promise(function(resolve, reject) {
+        var content;
         if (!options.url) {
             reject('options.url is required');
         }
@@ -42,10 +29,8 @@ function inlineContent(src, options) {
             }
 
             css += '\n' + options.extraCss;
-            inlineCssWithCb(html, css, options)
-                .then(function(out) {
-                    resolve(out);
-                })
+            content = inlineCss(html, css, options);
+            resolve(content);
         });
     });
 
