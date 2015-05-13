@@ -4,6 +4,7 @@
   "description": "Inline css into an html file.",
   "main": "index.js",
   "dependencies": {
+    "bluebird": "^2.9.25",
     "cheerio": "^0.19.0",
     "css-property": "^1.0.0",
     "css-rules": "^1.0.0",

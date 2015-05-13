@@ -23,10 +23,15 @@ function compare(fixturePath, expectedPath, options, done) {
 
     options.url = 'file://' + file.path;
 
-    inlineCss(file.contents.toString('utf8'), options, function (err, html) {
+    inlineCss(file.contents.toString('utf8'), options)
+    .then(function(html){
         html.should.be.equal(String(fs.readFileSync(expectedPath)));
-
-        done();
+    })
+    .then(function(){
+        done()
+    })
+    .catch(function(err){
+        done(err)
     });
 }
 
