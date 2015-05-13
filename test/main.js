@@ -211,6 +211,20 @@ describe('inline-css', function() {
         compare(path.join('test', 'fixtures', 'template.ejs'), path.join('test', 'fixtures', 'template.ejs'), options, done);
     });
 
+    it('Should error when passed malformed CSS', function(done) {
+        var options = {
+            url: './'
+        };
+        var file = getFile(path.join('test', 'fixtures', 'malformed.html'));
+        inlineCss(file.contents.toString('utf8'), options)
+        .then(function(html) {
+            done(new Error('test should error when options.url is not set'));
+        })
+        .catch(function(err){
+            done();
+        });
+    });
+
     it('Should error when options.url is not set', function(done) {
         var options = {}
         var file = getFile(path.join('test', 'fixtures', 'template.ejs'));

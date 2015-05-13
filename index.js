@@ -67,5 +67,5 @@ module.exports = function (html, options) {
             .then(function(data) { resolve(data); })
             .catch(function(err) { reject(err); })
         });
-        
+
 };
